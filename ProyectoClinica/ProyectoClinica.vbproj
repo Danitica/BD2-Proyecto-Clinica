@@ -3,11 +3,14 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>BD2_Proyecto_Clinica</RootNamespace>
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="c4zudfnf.jiu~" />
+  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Data" />
@@ -20,6 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="frmConsultaCitasDoctor.vb" />
+    <Compile Update="frmCrearDoctor.vb" />
+    <Compile Update="frmConsultaPaciente.vb" />
+    <Compile Update="frmMantPacientes.vb" />
+    <Compile Update="frmMantUsuarios.vb" />
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
