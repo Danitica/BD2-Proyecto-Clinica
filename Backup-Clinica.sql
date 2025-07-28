@@ -400,7 +400,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vdoctor` AS select `doctor`.`id` AS `ID`,`doctor`.`nombre_completo` AS `NOMBRE`,`doctor`.`apellido` AS `APELLIDOS`,`doctor`.`identificacion` AS `IDENTIFICACION`,`doctor`.`direccion` AS `DIRECCION`,`doctor`.`telefono` AS `TELEFONO`,`doctor`.`correo` AS `CORREO_PERSONAL`,`usuarios`.`correo` AS `USUARIO`,`especialidad`.`descripcion` AS `ESPECIALIDAD` from (((`doctor` join `usuarios` on((`doctor`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) join `doctor_especialidad` on((`doctor`.`id` = `doctor_especialidad`.`doctor_id`))) join `especialidad` on((`doctor_especialidad`.`especialidad_id` = `especialidad`.`id`))) */;
@@ -418,7 +418,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vdoctorconsultas` AS select `consulta`.`id` AS `ID`,`consulta`.`numero` AS `CONSECUTIVO`,`consulta`.`fecha` AS `FECHA_CONSULTA`,`consulta`.`prioridad` AS `PRIORIDAD`,(case when (`consulta`.`prioridad` = 'ALTA') then 1 when (`consulta`.`prioridad` = 'MEDIA') then 2 else 3 end) AS `NUM_PRIORIDAD`,`usdoc`.`idusuarios` AS `CODIGO_DOCTOR`,`uspac`.`idusuarios` AS `CODIGO_PACIENTE`,`persona`.`identificacion` AS `IDENTIFICACION`,concat(`persona`.`nombre_completo`,' ',`persona`.`apellido`) AS `PACIENTE`,concat(`doctor`.`nombre_completo`,' ',`doctor`.`apellido`) AS `DOCTOR`,`especialidad`.`descripcion` AS `ESPECIALIDAD`,`persona`.`edad` AS `EDAD_PACIENTE`,`persona`.`sexo` AS `SEXO_PACIENTE`,(select count(0) from `tratamiento` where (`tratamiento`.`consulta_id` = `consulta`.`id`)) AS `CONSULTA_FINALIZADA` from ((((((`consulta` join `doctor` on((`doctor`.`id` = `consulta`.`doctor_id`))) join `doctor_especialidad` on((`doctor_especialidad`.`doctor_id` = `doctor`.`id`))) join `especialidad` on((`especialidad`.`id` = `doctor_especialidad`.`especialidad_id`))) join `usuarios` `usdoc` on((`doctor`.`usuarios_idusuarios` = `usdoc`.`idusuarios`))) join `persona` on((`persona`.`id` = `consulta`.`persona_id`))) join `usuarios` `uspac` on((`persona`.`usuarios_idusuarios` = `uspac`.`idusuarios`))) */;
@@ -436,7 +436,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vdoctorsecretaria` AS select `doctor`.`id` AS `ID`,`doctor`.`nombre_completo` AS `NOMBRE`,`doctor`.`apellido` AS `APELLIDOS`,`especialidad`.`descripcion` AS `ESPECIALIDAD` from ((`doctor` join `doctor_especialidad` on((`doctor`.`id` = `doctor_especialidad`.`doctor_id`))) join `especialidad` on((`doctor_especialidad`.`especialidad_id` = `especialidad`.`id`))) */;
@@ -454,7 +454,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vnuevosusuariosdoctores` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO` from `usuarios` where ((0 = (select count(0) from `doctor` where (`doctor`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) and (`usuarios`.`tipo_usuario` = 'Doctor')) */;
@@ -472,7 +472,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vnuevosusuariospacientes` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO` from `usuarios` where ((0 = (select count(0) from `persona` where (`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) and (`usuarios`.`tipo_usuario` = 'Paciente')) */;
@@ -490,7 +490,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vpaciente` AS select `persona`.`id` AS `ID`,`persona`.`nombre_completo` AS `NOMBRE`,`persona`.`apellido` AS `APELLIDO`,`persona`.`identificacion` AS `CEDULA`,`persona`.`telefono` AS `TELEFONO`,`usuarios`.`correo` AS `USUARIO`,(select count(0) from (`consulta` left join `tratamiento` on((`consulta`.`id` = `tratamiento`.`consulta_id`))) where ((`consulta`.`persona_id` = `persona`.`id`) and (`tratamiento`.`consulta_id` is null))) AS `CONSULTAS_PENDIENTES`,(select count(0) from (`consulta` join `tratamiento` on((`consulta`.`id` = `tratamiento`.`consulta_id`))) where (`consulta`.`persona_id` = `persona`.`id`)) AS `CONSULTAS_FINALIZADAS` from (`persona` join `usuarios` on((`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) */;
@@ -508,7 +508,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vpacienteconsultas` AS select `consulta`.`id` AS `ID`,`consulta`.`numero` AS `CONSECUTIVO`,`consulta`.`fecha` AS `FECHA_CONSULTA`,concat(`doctor`.`nombre_completo`,' ',`doctor`.`apellido`) AS `DOCTOR`,`especialidad`.`descripcion` AS `ESPECIALIDAD` from (((`consulta` join `doctor` on((`doctor`.`id` = `consulta`.`doctor_id`))) join `doctor_especialidad` on((`doctor`.`id` = `doctor_especialidad`.`doctor_id`))) join `especialidad` on((`doctor_especialidad`.`especialidad_id` = `especialidad`.`id`))) */;
@@ -526,7 +526,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vpacientesecretaria` AS select `persona`.`id` AS `ID`,`persona`.`nombre_completo` AS `NOMBRE`,`persona`.`apellido` AS `APELLIDO`,`persona`.`identificacion` AS `CEDULA`,`persona`.`telefono` AS `TELEFONO`,`persona`.`correo` AS `CORREO_ELECTRONICO`,`persona`.`edad` AS `EDAD`,`persona`.`sexo` AS `GENERO`,`usuarios`.`correo` AS `USUARIO` from (`persona` join `usuarios` on((`persona`.`usuarios_idusuarios` = `usuarios`.`idusuarios`))) */;
@@ -544,7 +544,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `vusuarios` AS select `usuarios`.`idusuarios` AS `ID`,`usuarios`.`nombre` AS `NOMBRE_USUARIO`,`usuarios`.`correo` AS `CODIGO_USUARIO`,`usuarios`.`tipo_usuario` AS `TIPO_USUARIO` from `usuarios` */;
