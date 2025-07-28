@@ -84,10 +84,8 @@ Public Class frmModificaDoctor
 
           txtIdentificacion.Focus() ' Poner el foco en el campo de usuario
 
-          frmMantDoctores.Show()
-          frmMantDoctores.AjustarPantalla()
-          Me.Close()
-        Else
+                    btnRegresar.PerformClick()
+                Else
           MessageBox.Show("No se pudo registrar la especialidad para el doctor registrado.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
       Else

@@ -68,11 +68,9 @@
             MessageBox.Show("Usuario eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If CodigoUsuario = idUsuario Then
-              ' Si el usuario eliminado es el mismo que está logueado, se cierra la sesión
-              frmLogin.Show()
-              frmLogin.AjustarPantalla()
-              Me.Close()
-            End If
+                            ' Si el usuario eliminado es el mismo que está logueado, se cierra la sesión
+                            btnRegresar.PerformClick()
+                        End If
           Else
             MessageBox.Show("Se presentó un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
           End If

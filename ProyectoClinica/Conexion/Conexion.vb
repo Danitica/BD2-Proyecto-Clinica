@@ -18,8 +18,8 @@ Public Class Conexion
   End Property
 
   Public Sub New()
-    Dim cadena As String = "server=localhost;user=root;password=1234;database=db_clinica;"
-    conexion = New MySqlConnection(cadena)
+        Dim cadena As String = "server=localhost;user=root;password=password;database=db_clinica;"
+        conexion = New MySqlConnection(cadena)
   End Sub
 
   Public Function Abrir() As MySqlConnection

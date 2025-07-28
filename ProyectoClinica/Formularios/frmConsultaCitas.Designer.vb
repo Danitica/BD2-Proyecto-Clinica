@@ -22,7 +22,7 @@ Partial Class frmConsultaCitas
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+    Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
     dgvConsultasPaciente = New DataGridView()
     btnCompletar = New Button()
     btnVerConsulta = New Button()
@@ -38,6 +38,7 @@ Partial Class frmConsultaCitas
     lblApellidoDoctor = New Label()
     lblNombreDoctor = New Label()
     chbVerCerradas = New CheckBox()
+    btnEliminarConsulta = New Button()
     CType(dgvConsultasPaciente, ComponentModel.ISupportInitialize).BeginInit()
     grbFiltros.SuspendLayout()
     SuspendLayout()
@@ -47,14 +48,14 @@ Partial Class frmConsultaCitas
     dgvConsultasPaciente.AllowUserToAddRows = False
     dgvConsultasPaciente.AllowUserToDeleteRows = False
     dgvConsultasPaciente.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-    DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-    DataGridViewCellStyle1.BackColor = SystemColors.Control
-    DataGridViewCellStyle1.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
-    DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-    DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-    DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-    DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-    dgvConsultasPaciente.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+    DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+    DataGridViewCellStyle2.BackColor = SystemColors.Control
+    DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+    DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+    DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+    DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+    DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+    dgvConsultasPaciente.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
     dgvConsultasPaciente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
     dgvConsultasPaciente.Location = New Point(12, 156)
     dgvConsultasPaciente.MultiSelect = False
@@ -69,7 +70,7 @@ Partial Class frmConsultaCitas
     btnCompletar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
     btnCompletar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
     btnCompletar.FlatStyle = FlatStyle.Flat
-    btnCompletar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnCompletar.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     btnCompletar.ForeColor = Color.White
     btnCompletar.Location = New Point(10, 104)
     btnCompletar.Name = "btnCompletar"
@@ -83,9 +84,9 @@ Partial Class frmConsultaCitas
     btnVerConsulta.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
     btnVerConsulta.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
     btnVerConsulta.FlatStyle = FlatStyle.Flat
-    btnVerConsulta.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnVerConsulta.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     btnVerConsulta.ForeColor = Color.White
-    btnVerConsulta.Location = New Point(145, 104)
+    btnVerConsulta.Location = New Point(139, 104)
     btnVerConsulta.Name = "btnVerConsulta"
     btnVerConsulta.Size = New Size(118, 46)
     btnVerConsulta.TabIndex = 2
@@ -147,7 +148,7 @@ Partial Class frmConsultaCitas
     btnFiltrar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
     btnFiltrar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
     btnFiltrar.FlatStyle = FlatStyle.Flat
-    btnFiltrar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnFiltrar.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     btnFiltrar.ForeColor = Color.White
     btnFiltrar.Location = New Point(518, 48)
     btnFiltrar.Name = "btnFiltrar"
@@ -215,12 +216,27 @@ Partial Class frmConsultaCitas
     chbVerCerradas.Text = "Ver Consultas Cerradas"
     chbVerCerradas.UseVisualStyleBackColor = False
     ' 
+    ' btnEliminarConsulta
+    ' 
+    btnEliminarConsulta.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
+    btnEliminarConsulta.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
+    btnEliminarConsulta.FlatStyle = FlatStyle.Flat
+    btnEliminarConsulta.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnEliminarConsulta.ForeColor = Color.White
+    btnEliminarConsulta.Location = New Point(269, 104)
+    btnEliminarConsulta.Name = "btnEliminarConsulta"
+    btnEliminarConsulta.Size = New Size(118, 46)
+    btnEliminarConsulta.TabIndex = 9
+    btnEliminarConsulta.Text = "Eliminar Consulta"
+    btnEliminarConsulta.UseVisualStyleBackColor = True
+    ' 
     ' frmConsultaCitas
     ' 
-    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+    AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     BackgroundImage = My.Resources.Resources.FondoApp
     ClientSize = New Size(752, 464)
+    Controls.Add(btnEliminarConsulta)
     Controls.Add(chbVerCerradas)
     Controls.Add(grbFiltros)
     Controls.Add(btnRegresar)
@@ -253,4 +269,5 @@ Partial Class frmConsultaCitas
   Friend WithEvents lblNombreDoctor As Label
   Friend WithEvents cmbFiltPrioridad As ComboBox
   Friend WithEvents chbVerCerradas As CheckBox
+  Friend WithEvents btnEliminarConsulta As Button
 End Class

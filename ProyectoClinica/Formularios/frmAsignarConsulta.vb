@@ -147,10 +147,8 @@
 
       If rowsAffected > 0 Then
         MessageBox.Show("Consulta asignada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        frmMantDoctores.Show()
-        frmMantDoctores.AjustarPantalla()
-        Me.Close()
-      Else
+                btnCancelar.PerformClick()
+            Else
         MessageBox.Show("No se pudo asignar la consulta. Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
       End If
     Catch ex As Exception

@@ -1,13 +1,10 @@
 ﻿Public Class frmMenuPrincipal
   Implements IFormularios
 
-  Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
-    If MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-      PantallaManager.Finalizar()
+  Private saliendo As Boolean = False
 
-      frmLogin.Show()
-      Me.Close()
-    End If
+  Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
+    Me.Close()
   End Sub
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
@@ -79,4 +76,12 @@
     PantallaManager.LlamarPantallaHija(New frmReporte(), Me)
   End Sub
 
+  Private Sub frmMenuPrincipal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+    If MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+      PantallaManager.Finalizar()
+      frmLogin.Show()
+    Else
+      e.Cancel = True
+    End If
+  End Sub
 End Class

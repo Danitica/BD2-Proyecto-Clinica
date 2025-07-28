@@ -3,6 +3,7 @@
 
   Private idPaciente As Integer
   Private nombrePaciente As String
+  Private cedulaPaciente As String
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     btnCrear.Enabled = True
@@ -17,7 +18,6 @@
         btnEliminar.Enabled = False
       Case "Secretaria"
         CargarPacientes()
-        btnVerConsultas.Enabled = False
       Case Else
         MessageBox.Show("Tipo de usuario no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         btnCrear.Enabled = False
@@ -206,6 +206,7 @@
     If e.RowIndex >= 0 Then
       idPaciente = Integer.Parse(dgvPacientes.Rows(e.RowIndex).Cells("colId").Value)
       nombrePaciente = dgvPacientes.Rows(e.RowIndex).Cells("colNombre").Value
+      cedulaPaciente = dgvPacientes.Rows(e.RowIndex).Cells("colIdentificacion").Value
     End If
   End Sub
 
@@ -238,6 +239,16 @@
       End If
     Else
       MessageBox.Show("Debe seleccionar el paciente a eliminar.", "Eliminar Paciente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End If
+  End Sub
+
+  Private Sub btnVerConsultas_Click(sender As Object, e As EventArgs) Handles btnVerConsultas.Click
+    If idPaciente > 0 Then
+      Dim frmConsultaCitas As New frmConsultaCitas
+      frmConsultaCitas.CedulaPaciente = cedulaPaciente
+      PantallaManager.LlamarPantallaHija(frmConsultaCitas, Me)
+    Else
+      MessageBox.Show("Debe seleccionar un paciente para ver las consultas asociadas.", "Ver Consultas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 End Class

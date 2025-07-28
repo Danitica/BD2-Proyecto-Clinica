@@ -78,10 +78,8 @@ Public Class frmCambiarClave
       usuario.Password = HashSHA256(nuevaClave)
       If dbusuario.CambiarClave(usuario) > 0 Then
         MessageBox.Show("Clave cambiada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        frmMantUsuarios.Show()
-        frmMantUsuarios.AjustarPantalla()
-        Me.Close()
-      Else
+                btnCancelar.PerformClick()
+            Else
         MessageBox.Show("Error al cambiar la clave. Por favor, inténtelo de nuevo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
       End If
     Else

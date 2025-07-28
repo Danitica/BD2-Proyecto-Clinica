@@ -90,10 +90,8 @@ Public Class frmCrearPaciente
         End If
         txtIdentificacion.Focus() ' Poner el foco en el campo de usuario
 
-        frmMantPacientes.Show()
-        frmMantPacientes.AjustarPantalla()
-        Me.Close()
-      Else
+                btnRegresar.PerformClick()
+            Else
         MessageBox.Show("No se pudo registrar el personaData. Inténtelo de nuevo.", "Error de Registro", MessageBoxButtons.OK, MessageBoxIcon.Error)
       End If
     Catch ex As Exception

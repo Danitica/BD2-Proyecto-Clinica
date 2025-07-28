@@ -45,6 +45,7 @@ Partial Class frmMantPacientes
     ' 
     dgvPacientes.AllowUserToAddRows = False
     dgvPacientes.AllowUserToDeleteRows = False
+    dgvPacientes.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
     DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
     DataGridViewCellStyle1.BackColor = SystemColors.Control
     DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
@@ -59,7 +60,7 @@ Partial Class frmMantPacientes
     dgvPacientes.Name = "dgvPacientes"
     dgvPacientes.ReadOnly = True
     dgvPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-    dgvPacientes.Size = New Size(762, 281)
+    dgvPacientes.Size = New Size(750, 269)
     dgvPacientes.TabIndex = 0
     ' 
     ' btnCrear

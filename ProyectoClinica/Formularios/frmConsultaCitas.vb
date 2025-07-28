@@ -6,6 +6,14 @@
   Dim _nombrePaciente As String
   Dim _especialidadDoctor As String
   Dim _ConsulaFinalizada As Integer
+  Dim _identificacionPaciente As String
+
+  WriteOnly Property CedulaPaciente As String
+    Set(value As String)
+      _identificacionPaciente = value
+    End Set
+  End Property
+
 
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     btnVerConsulta.Enabled = True
@@ -16,17 +24,37 @@
     _especialidadDoctor = ""
     chbVerCerradas.Checked = False
     chbVerCerradas.Visible = True
+    txtFilIdentificacion.Enabled = True
 
     Select Case TipoUsuario
       Case "Doctor"
-        CargarConsultas()
-        btnVerConsulta.Enabled = False
         Me.Text = "Control de Citas - Doctor"
+        btnEliminarConsulta.Enabled = False
+        If _identificacionPaciente <> "" Then
+          txtFilIdentificacion.Text = _identificacionPaciente
+          txtFilIdentificacion.Enabled = False
+          btnCompletar.Enabled = False
+          chbVerCerradas.Checked = True
+          chbVerCerradas.Visible = False
+          CargarConsultas("", "", _identificacionPaciente, "")
+        Else
+          btnVerConsulta.Enabled = False
+          CargarConsultas()
+        End If
       Case "Paciente"
         chbVerCerradas.Visible = False
+        btnEliminarConsulta.Enabled = False
         CargarConsultas()
         btnCompletar.Enabled = False
         Me.Text = "Control de Citas - Paciente"
+      Case "Secretaria"
+        txtFilIdentificacion.Text = _identificacionPaciente
+        txtFilIdentificacion.Enabled = False
+        chbVerCerradas.Visible = False
+        btnVerConsulta.Enabled = False
+        btnCompletar.Enabled = False
+        CargarConsultas("", "", _identificacionPaciente, "")
+        Me.Text = "Control de Citas - Secretaria"
       Case Else
         MessageBox.Show("Tipo de usuario no válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         btnCompletar.Enabled = False
@@ -50,6 +78,8 @@
         If Not chbVerCerradas.Checked Then
           filtros.Add("ConsultaFinalizada", 0) ' Solo consultas no finalizadas
         End If
+      ElseIf TipoUsuario = "Secretaria" Then
+        filtros.Add("ConsultaFinalizada", 0) ' Solo consultas no finalizadas
       Else
         filtros.Add("CodigoPaciente", CodigoUsuario)
       End If
@@ -194,17 +224,17 @@
         End If
       End If
 
-      ' Mostrar el formulario de completar consulta
-      frmCompletarConsulta.Show()
+      Dim frmCompletarConsulta As New frmCompletarConsulta
+
       frmCompletarConsulta.IdConsulta = _idConsulta
       frmCompletarConsulta.NombreDoctor = _nombreDoctor
       frmCompletarConsulta.NombrePaciente = _nombrePaciente
       frmCompletarConsulta.Especialidad = _especialidadDoctor
       frmCompletarConsulta.ModificarConsulta = (_ConsulaFinalizada = 1)
-      frmCompletarConsulta.AjustarPantalla()
-      Hide()
+
+      PantallaManager.LlamarPantallaHija(frmCompletarConsulta, Me)
     Else
-      MessageBox.Show("Debe seleccionar una consulta para ser completada.", "Asignar Paciente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      MessageBox.Show("Debe seleccionar una consulta para ser completada.", "Completar Consulta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 
@@ -214,15 +244,17 @@
         MessageBox.Show("La consulta no ha sido completada. No se puede ver el detalle de la cita", "Consulta No Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Return
       End If
-      frmCompletarConsulta.Show()
+      Dim frmCompletarConsulta As New frmCompletarConsulta
+
       frmCompletarConsulta.IdConsulta = _idConsulta
       frmCompletarConsulta.NombreDoctor = _nombreDoctor
       frmCompletarConsulta.NombrePaciente = _nombrePaciente
       frmCompletarConsulta.Especialidad = _especialidadDoctor
-      frmCompletarConsulta.AjustarPantalla()
-      Me.Hide()
+      frmCompletarConsulta.SoloLectura = True
+
+      PantallaManager.LlamarPantallaHija(frmCompletarConsulta, Me)
     Else
-      MessageBox.Show("Debe seleccionar una consulta para poder verla.", "Asignar Paciente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      MessageBox.Show("Debe seleccionar una consulta para poder verla.", "Ver Consulta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End If
   End Sub
 
@@ -281,4 +313,17 @@
     CargarConsultas(txtFilNombre.Text.Trim, txtFilApellido.Text.Trim, txtFilIdentificacion.Text.Trim, cmbFiltPrioridad.SelectedItem?.ToString)
   End Sub
 
+  Private Sub btnEliminarConsulta_Click(sender As Object, e As EventArgs) Handles btnEliminarConsulta.Click
+    If _idConsulta > 0 Then
+      If MessageBox.Show("Esta seguro que desea eliminar la consulta", "Eliminar Consulta", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.No Then
+        Return
+      End If
+      Dim consultaDAO As New ConsultaDAO
+      consultaDAO.Delete(_idConsulta)
+      consultaDAO.Dispose()
+      btnFiltrar.PerformClick()
+    Else
+      MessageBox.Show("Debe seleccionar una consulta para eliminarla.", "Eliminar Consulta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End If
+  End Sub
 End Class

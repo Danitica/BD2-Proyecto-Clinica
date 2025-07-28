@@ -32,7 +32,7 @@
     ' Preparar el formulario para ser embebido
     pantallaHija.TopLevel = False
     pantallaHija.FormBorderStyle = FormBorderStyle.None
-    pantallaHija.Dock = DockStyle.None
+    pantallaHija.Dock = DockStyle.Fill
     pantallaHija.Location = New Point(0, 0)
 
     ' Agregar al stack de navegación

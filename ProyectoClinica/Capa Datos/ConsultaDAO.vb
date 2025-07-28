@@ -1,6 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.Common
 Imports MySql.Data.MySqlClient
+Imports Org.BouncyCastle.Crypto
 
 Public Class ConsultaDAO
   Inherits DAOBase
@@ -113,7 +114,30 @@ Public Class ConsultaDAO
     Dim parametros As New List(Of MySqlParameter) From {
         New MySqlParameter("@id", id)
     }
-    Return ExecuteNonQuery(query, parametros)
+    Dim rowsAffected As Integer = 0
+
+    Try
+      BeginTransaction()
+
+      '1) Elimina tratamientos asociados a las consultas del paciente
+      query = "DELETE FROM tratamiento WHERE consulta_id  = @id"
+
+    ExecuteNonQuery(query, parametros)
+
+      '2) Elimina consultas si el usuario es paciente
+      query = "DELETE FROM consulta WHERE id = @id"
+
+      rowsAffected = ExecuteNonQuery(query, parametros)
+
+      EndTransaction(True)
+    Catch ex As Exception
+      EndTransaction(False)
+      Throw New Exception("Error al eliminar la consulta: " & ex.Message)
+    Finally
+      CerrarConexion()
+    End Try
+
+    Return rowsAffected
   End Function
 
 End Class

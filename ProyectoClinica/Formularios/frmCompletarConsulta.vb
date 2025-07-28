@@ -7,6 +7,7 @@ Public Class frmCompletarConsulta
   Dim _Paciente As String = ""
   Dim _especialidad As String = ""
   Dim _ModificarConsulta As Boolean = False
+  Dim _SoloLectura As Boolean = False
   Dim _datoConsultaAct As Consulta
   Dim _datoTratamientoAct As Tratamiento
 
@@ -39,6 +40,12 @@ Public Class frmCompletarConsulta
     End Set
   End Property
 
+  WriteOnly Property SoloLectura As Boolean
+    Set(value As Boolean)
+      _SoloLectura = value
+    End Set
+  End Property
+
   Public Sub AjustarPantalla() Implements IFormularios.AjustarPantalla
     CargarConsulta()
     CargarTratamiento()
@@ -54,7 +61,7 @@ Public Class frmCompletarConsulta
     txtPadecimientos.ReadOnly = False
     txtTratamiento.ReadOnly = False
 
-    If TipoUsuario = "Paciente" Then
+    If TipoUsuario = "Paciente" Or _SoloLectura Then
       'eliminar los mouse hover de los controles ya que los pacientes no van a ingresar datos
       RemoveHandler txtPeso.MouseHover, AddressOf txtPeso_MouseHover
       RemoveHandler txtTemperatura.MouseHover, AddressOf txtTemperatura_MouseHover
@@ -141,9 +148,7 @@ Public Class frmCompletarConsulta
 
         If rowsAffected > 0 Then
           MessageBox.Show("Consulta actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-          frmConsultaCitas.Show()
-          frmConsultaCitas.AjustarPantalla()
-          Me.Close()
+          btnRegresar.PerformClick()
         Else
           MessageBox.Show("No se pudo registrar el tratamiento. Por favor intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
