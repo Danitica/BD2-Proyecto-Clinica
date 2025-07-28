@@ -1,7 +1,13 @@
 ﻿Public Class frmMenuPrincipal
   Implements IFormularios
 
-  Private saliendo As Boolean = False
+  Private _forzarSalida As Boolean = False
+
+  WriteOnly Property ForzarSalida As Boolean
+    Set(value As Boolean)
+      _forzarSalida = value
+    End Set
+  End Property
 
   Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
     Me.Close()
@@ -77,11 +83,15 @@
   End Sub
 
   Private Sub frmMenuPrincipal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-    If MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-      PantallaManager.Finalizar()
-      frmLogin.Show()
+    If Not _forzarSalida Then
+      If MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+        PantallaManager.Finalizar()
+        frmLogin.Show()
+      Else
+        e.Cancel = True
+      End If
     Else
-      e.Cancel = True
+      frmLogin.Show()
     End If
   End Sub
 End Class

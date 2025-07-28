@@ -28,7 +28,7 @@
             }
 
       Dim lista As List(Of VUsuario) = dao.GetByFilters(filtros)
-      dgvUsuarios.DataSource = lista
+      dgvUsuarios.DataSource = lista.OrderBy(Of String)(Function(u) u.NombreUsuario).ToList()
       idUsuario = -1
       dgvUsuarios.ClearSelection()
     Catch ex As Exception
@@ -68,9 +68,10 @@
             MessageBox.Show("Usuario eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If CodigoUsuario = idUsuario Then
-                            ' Si el usuario eliminado es el mismo que está logueado, se cierra la sesión
-                            btnRegresar.PerformClick()
-                        End If
+              ' Si el usuario eliminado es el mismo que está logueado, se cierra la sesión
+              DirectCast(Me.Tag, frmMenuPrincipal).ForzarSalida = True
+              DirectCast(Me.Tag, frmMenuPrincipal).Close()
+            End If
           Else
             MessageBox.Show("Se presentó un error al eliminar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
           End If
