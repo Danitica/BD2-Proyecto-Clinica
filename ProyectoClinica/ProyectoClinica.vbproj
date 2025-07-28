@@ -19,15 +19,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.4" />
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="frmConsultaCitasDoctor.vb" />
-    <Compile Update="frmCrearDoctor.vb" />
-    <Compile Update="frmConsultaPaciente.vb" />
-    <Compile Update="frmMantPacientes.vb" />
-    <Compile Update="frmMantUsuarios.vb" />
+    <Compile Update="Formularios\frmReporte.vb" />
+    <Compile Update="Formularios\frmConsultaCitas.vb" />
+    <Compile Update="Formularios\frmCompletarConsulta.vb" />
+    <Compile Update="Formularios\frmModificaPaciente.vb" />
+    <Compile Update="Formularios\frmCrearPaciente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmModificaDoctor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\frmModificaCuenta.vb" />
+    <Compile Update="Formularios\frmCrearDoctor.vb" />
+    <Compile Update="Formularios\frmMantPacientes.vb" />
+    <Compile Update="Formularios\frmMantUsuarios.vb" />
     <Compile Update="My Project\Application.Designer.vb">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
