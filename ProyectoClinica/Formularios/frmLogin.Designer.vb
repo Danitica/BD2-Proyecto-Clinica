@@ -64,14 +64,14 @@ Partial Class frmLogin
     txtCorreo.Name = "txtCorreo"
     txtCorreo.Size = New Size(165, 23)
     txtCorreo.TabIndex = 1
-    txtCorreo.Text = "eladiovch@gmail.com"
+    txtCorreo.Text = "danicorderos27@gmail.com"
     ' 
     ' btnIngresar
     ' 
     btnIngresar.BackColor = Color.FromArgb(CByte(62), CByte(140), CByte(195))
     btnIngresar.FlatAppearance.BorderColor = Color.FromArgb(CByte(165), CByte(200), CByte(226))
     btnIngresar.FlatStyle = FlatStyle.Flat
-    btnIngresar.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnIngresar.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     btnIngresar.ForeColor = Color.White
     btnIngresar.Location = New Point(130, 163)
     btnIngresar.Name = "btnIngresar"
@@ -84,7 +84,7 @@ Partial Class frmLogin
     ' 
     btnSalir.BackColor = Color.IndianRed
     btnSalir.FlatStyle = FlatStyle.Flat
-    btnSalir.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    btnSalir.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     btnSalir.ForeColor = Color.White
     btnSalir.Location = New Point(13, 163)
     btnSalir.Name = "btnSalir"
@@ -114,7 +114,7 @@ Partial Class frmLogin
     ' lblBienvenidos
     ' 
     lblBienvenidos.BackColor = Color.Transparent
-    lblBienvenidos.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+    lblBienvenidos.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
     lblBienvenidos.ForeColor = Color.FromArgb(CByte(43), CByte(98), CByte(138))
     lblBienvenidos.Location = New Point(3, 9)
     lblBienvenidos.Name = "lblBienvenidos"
@@ -125,7 +125,7 @@ Partial Class frmLogin
     ' 
     ' frmLogin
     ' 
-    AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+    AutoScaleDimensions = New SizeF(7F, 15F)
     AutoScaleMode = AutoScaleMode.Font
     BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
     BackgroundImageLayout = ImageLayout.Stretch
